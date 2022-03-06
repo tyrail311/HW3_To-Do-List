@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HW3_ToDoList">
         <activity
+            android:name=".AddItems"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

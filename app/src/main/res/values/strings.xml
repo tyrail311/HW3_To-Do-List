@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">HW3_To-Do-List</string>
+    <string name="to_do_list">TO-DO-LIST</string>
+    <string name="add_your_tasks_below">Add your tasks below:</string>
+    <string name="save_and_go_back">save and go back</string>
+    <string name="save_and_add_new_one">Save and Add new one</string>
+    <string name="go_back_without_saving">go back without saving</string>
+    <string name="write_a_task">Write a task</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
+    <string name="add_a_task">add a task</string>
 </resources>
