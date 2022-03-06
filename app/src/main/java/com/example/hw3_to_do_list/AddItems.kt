@@ -27,23 +27,19 @@ class AddItems : AppCompatActivity() {
 
     fun saveAndAdd(view : View)
     {
-        val listEntryIntent = Intent(this, MainActivity::class.java)
-        setResult(Activity.RESULT_OK, listEntryIntent)
-        addToList(listEntryIntent)
-
+        addToList()
     }
 
     fun goBackAndSave(view : View)
     {
         val listEntryIntent = Intent(this, MainActivity::class.java)
         setResult(Activity.RESULT_OK, listEntryIntent)
-        addToList(listEntryIntent)
+        listEntryIntent.putExtra("tasks", todoList)
         finish()
     }
 
-    private fun addToList(intent: Intent)
+    fun addToList()
     {
         todoList.add(write_a_task_text.text.toString())
-        intent.putExtra("tasks", todoList)
     }
 }
