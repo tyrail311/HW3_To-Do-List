@@ -28,13 +28,15 @@ class AddItems : AppCompatActivity() {
     fun saveAndAdd(view : View)
     {
         addToList()
+
     }
 
     fun goBackAndSave(view : View)
     {
         val listEntryIntent = Intent(this, MainActivity::class.java)
-        setResult(Activity.RESULT_OK, listEntryIntent)
+        addToList()
         listEntryIntent.putExtra("tasks", todoList)
+        setResult(Activity.RESULT_OK, listEntryIntent)
         finish()
     }
 

@@ -21,20 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onStart()
     {
         super.onStart()
-        val todoListAdapter = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_list_item_1, newTodoArray
-        )
+        val todoListAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, newTodoArray)
         list_view.adapter = todoListAdapter
         list_view.setOnItemLongClickListener { parent, view, position, id ->
-
             val selectedItem = parent.getItemAtPosition(position).toString()
             Toast.makeText(this, "This is a long press, Deleting $selectedItem", Toast.LENGTH_SHORT).show()
-
             newTodoArray.removeAt(position)
-
             todoListAdapter.notifyDataSetChanged()
-
             return@setOnItemLongClickListener true
         }
     }
