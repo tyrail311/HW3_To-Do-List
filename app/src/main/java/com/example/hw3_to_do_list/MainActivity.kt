@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loadJson()
+
     }
     override fun onStart()
     {
-        loadJson()
         super.onStart()
         val todoListAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, newTodoArray)
         list_view.adapter = todoListAdapter
@@ -39,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         saveJson()
     }
     fun openSecondActivity(view : View)
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show()
         }
     }
+
     fun saveJson() {
 
         if (newTodoArray.size == 0) { // Make sure the list has some items
@@ -68,33 +70,23 @@ class MainActivity : AppCompatActivity() {
         }
         val sharedPreferences = getSharedPreferences(FILE_NAME, MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
         val gson = Gson()
         val newToDoArrayJson = gson.toJson(newTodoArray)
         editor.putString("tasks", newToDoArrayJson)
         editor.apply()
-
-        val toast = Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
-
-
     }
-
 
     fun loadJson() {
 
         val sharedPreferences = getSharedPreferences(FILE_NAME, MODE_PRIVATE)
         val tasks = sharedPreferences.getString("tasks", "") ?: ""
-
         if (tasks.isNotEmpty()){
-
             val gson = Gson()
             val sType = object : TypeToken<List<String>>() { }.type
-            val savedVehicleList = gson.fromJson<List<String>>(tasks, sType)
-
+            val savedToDoList = gson.fromJson<List<String>>(tasks, sType)
             newTodoArray.clear()
-
-            for (vehicle in savedVehicleList) {
-                newTodoArray.add(vehicle)
+            for (task in savedToDoList) {
+                newTodoArray.add(task)
             }
         }
     }
