@@ -63,11 +63,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun saveJson() {
-
-        if (newTodoArray.size == 0) { // Make sure the list has some items
-            Toast.makeText(this, "Nothing to save", Toast.LENGTH_SHORT).show()
-            return
-        }
         val sharedPreferences = getSharedPreferences(FILE_NAME, MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
